@@ -62,19 +62,16 @@ Now JSX comes to save us. JSX is Javascript as XML - it is the language extensio
 
 This above code is the alternate version. It accepts the html and convert it into JS. The tool that works behind the scene is babel. 
 
-Try the above code in the editor of babel: https://babeljs.io/repl
+Try the above code in the editor of babel to understand more: https://babeljs.io/repl
 
+### **React component**
+It is a block of the page, where it can work or restructure itself based on the user interaction.
 
+To understand it more clearly. please visit the App.js in the above link.
+The function with name app is exported and it return the html content. This app component can be plugged anywhere on the entire webpage and even it can be reused entirely.
 
+**Step to build and use component:**
+- Create the function in app.js which returns html content and export it.
+- import in the index.js and use it.
 
-
-
-
-
-
-
-
-
-
-
-
+Please view Header and it's usage in App function of App.js for your reference.

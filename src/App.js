@@ -1,11 +1,38 @@
 import React from "react";
 import "./style.css";
 
-export default function App() {
+function Header() {
   return (
-    <div>
-      <h1>Hello StackBlitz!</h1>
-      <p>Start editing to see some magic happen :)</p>
+    <header>
+      <h1>Saicharan's Blog</h1>
+    </header>
+  );
+}
+
+function Main() {
+  return (
+    <section>
+      <h3>Learn how i am made</h3>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <h5>footer</h5>
+    </footer>
+  );
+}
+
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <Main/>
+      <Footer/>
     </div>
   );
 }
+
+export default App;
