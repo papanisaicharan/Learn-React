@@ -9,23 +9,12 @@ function Header(props) {
   );
 }
 
-function Main(props) {
-  return (
-    <section>
-      <h3>{props.adjective}</h3>
-      <ul style={{ textAlign: "left" }}>
-        {props.lang.map((lan, index) => (
-          <li key={index}>{lan}</li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
 function Main1(props) {
+    // if want to get from the app, place the image in the public folder and import it here and use it
   return (
     <section>
       <h3>{props.adjective}</h3>
+      <img src="https://avatars.githubusercontent.com/u/25131591?v=4" height="200" alt="profile-pic"/>
       <ul style={{ textAlign: "left" }}>
         {props.lang.map(language => (
           <li key={language.id}>{language.language}</li>
@@ -50,7 +39,6 @@ function App() {
   return (
     <div className="App">
       <Header name="Saicharan Papani" />
-      <Main adjective="Passing from main" lang={languages} />
       <Main1 adjective="Repeat with keys" lang={languageObjects} />
       <Footer year={new Date().getFullYear()} />
     </div>
