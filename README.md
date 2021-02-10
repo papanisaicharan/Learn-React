@@ -2,6 +2,7 @@
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/learn-react-easy)
 
+**Note:** This code and content are taken from a course.
 
 This is my React learning project, I will learn and implement the concepts simulatenously.
 
