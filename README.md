@@ -2,7 +2,7 @@
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/learn-react-easy)
 
-**Note:** This codes and content is taken from a course.
+**Note:** This content is taken from a course and can be used as a reference and learning guide.
 
 This is my React learning project, I will learn and implement the concepts simulatenously.
 
