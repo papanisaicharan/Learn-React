@@ -1,48 +1,88 @@
-import React from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "./style.css";
 
-function Header(props) {
-  return (
-    <header>
-      <h1>{props.name}'s Blog</h1>
-    </header>
-  );
+function SecretComponent() {
+  return <h1>This is secretComponent</h1>;
 }
 
-function Main1(props) {
-    // if want to get from the app, place the image in the public folder and import it here and use it
-  return (
-    <section>
-      <h3>{props.adjective}</h3>
-      <img src="https://avatars.githubusercontent.com/u/25131591?v=4" height="200" alt="profile-pic"/>
-      <ul style={{ textAlign: "left" }}>
-        {props.lang.map(language => (
-          <li key={language.id}>{language.language}</li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-const languages = ["c", "c++", "java", "python"];
-const languageObjects = languages.map((lan, i) => ({ id: i, language: lan }));
-console.log(languageObjects);
-
-function Footer(props) {
-  return (
-    <footer>
-      <h5>Copyright {props.year}</h5>
-    </footer>
-  );
+function PublicComponent() {
+  return <h1>This is publicComponent</h1>;
 }
 
-function App() {
+// used array destructuring
+function App({ isSecret }) {
+  const [emotion, setEmotion] = useState("happy");
+  const [second, setSecondary] = useState("tired");
+
+  useEffect(() => {
+    console.log(`It's ${emotion} around hear! 1`);
+  }, [emotion]);
+
+  useEffect(() => {
+    console.log(`It's ${second} around hear! 2`);
+  }, [second]);
+  // if (props.isSecret) {
+  //   return <SecretComponent />;
+  // } else {
+  //   return <PublicComponent />;
+  // }
   return (
-    <div className="App">
-      <Header name="Saicharan Papani" />
-      <Main1 adjective="Repeat with keys" lang={languageObjects} />
-      <Footer year={new Date().getFullYear()} />
-    </div>
-  );
+    <>
+      <h1>Current emotion is {emotion} and {second}</h1>
+      <button onClick={() => setEmotion("happy")}>Happy</button>
+      <button onClick={() => setSecondary("Grabby")}>Grabby</button>
+      <button onClick={() => setSecondary("tired")}>tired</button>
+      <button onClick={() => setEmotion("Frustrated")}>Frustrated</button>
+      <button onClick={() => setEmotion("enthusiastic")}>enthusiastic</button>
+      {isSecret ? <SecretComponent /> : <PublicComponent />}
+      <App1 />
+      <App2 />
+    </>
+  )
+}
+
+function App1() {
+  const [checked, setChecked] = useState(false);
+
+  function toggle(){
+    // not only value, we can pass the function as parameter to get executed
+    setChecked((checked) => {
+      console.log(checked);
+      return !checked;
+    })
+  }
+
+  // return (
+  //   <>
+  //     <input type="checkbox" value={checked} onChange={() => setChecked((checked) => !checked)}/>
+  //     <p>{checked? "checked": "not checked"}</p>
+  //   </>
+  // )
+
+  return (
+    <>
+      <input type="checkbox" value={checked} onChange={toggle}/>
+      <p>{checked? "checked": "not checked"}</p>
+    </>
+  )
+
+}
+
+
+
+function App2() {
+  const [checked, toggle] = useReducer(
+    (checked) => !checked,
+    false
+  )
+
+  return (
+    <>
+      <input type="checkbox" value={checked} onChange={toggle}/>
+      <p>{checked? "checked": "not checked"}</p>
+    </>
+  )
+
 }
 
 export default App;

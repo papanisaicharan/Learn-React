@@ -3,31 +3,15 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 
-function App2() {
-  return <h2>Second App</h2>;
-}
+const arr = [1, 2, 3];
+console.log(arr);
 
-ReactDOM.render(
-  <React.Fragment>
-    <App />
-    <App2 />
-  </React.Fragment>,
-  document.getElementById("root")
-);
+// destructring
+const [first] = [1, 2, 3];
+console.log(first);
 
-// Below two also works the same way
-// ReactDOM.render(
-//   <>
-//     <App/>
-//     <App2/>
-//   </>,
-//    document.getElementById("root")
-// );
+// destructring
+const [, , last] = [1, 2, 3];
+console.log(last);
 
-// ReactDOM.render(
-//   <div>
-//     <App/>
-//     <App2/>
-//   </div>,
-//    document.getElementById("root")
-// );
+ReactDOM.render(<App isSecret={true} />, document.getElementById("root"));

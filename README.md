@@ -265,3 +265,220 @@ ReactDOM.render(
 //    document.getElementById("root")
 // );
 ```
+
+## ChapterRL0.4
+
+Conditional rendering (pass true or false as parameters to this component):
+
+```javascript
+import React from "react";
+import "./style.css";
+
+function SecretComponent() {
+  return <h1>This is secretComponent</h1>;
+}
+
+function PublicComponent() {
+  return <h1>This is publicComponent</h1>;
+}
+
+function App(props) {
+  // if (props.isSecret) {
+  //   return <SecretComponent />;
+  // } else {
+  //   return <PublicComponent />;
+  // }
+  return (
+    <>
+      {props.isSecret ? <SecretComponent /> : <PublicComponent />}
+    </>
+  )
+}
+
+export default App;
+```
+**Array destructuring**
+
+It is a simple way of pulling out the element of the array, see beloe example to understand more. They are useful when we are destructuring the props.
+
+```javascript
+const arr = [1,2,3];
+console.log(arr);
+
+// destructring
+const [first] = [1,2,3];
+console.log(first);
+
+// destructring
+const [,,last] = [1,2,3];
+console.log(last);
+```
+**Managing the state**
+
+We can manage the state in react using the useState hook. Please refer below example:
+```javascript
+import React, { useState } from "react";
+import "./style.css";
+
+function App({ isSecret }) {
+  const [emotion, setEmotion] = useState("happy");
+  return (
+    <>
+      <h1>Current emotion is {emotion}</h1>
+      <button onClick={() => setEmotion("happy")}>Happy</button>
+      <button onClick={() => setEmotion("Frustrated")}>Frustrated</button>
+      <button onClick={() => setEmotion("enthusiastic")}>enthusiastic</button>
+    </>
+  )
+}
+
+export default App;
+
+```
+**useEffect hook**
+
+when a defined state is changed, the useEffect will automatically gets triggered. It is almost like a side effect, which occurs after the change is happened on the state. It is almost like formControl valueChanges in angular. Common usages are printing the console logs, making backend calls and doing some animations etc. 
+All the useEffects will be executed if they are not specifically mentioned for which state variable changes they have to respond.
+Below example gives you a clear picture.
+
+```javascript
+import React, { useEffect, useState } from "react";
+import "./style.css";
+
+// used array destructuring
+function App({ isSecret }) {
+  const [emotion, setEmotion] = useState("happy");
+
+  useEffect(() => {
+    console.log(`It's ${emotion} around hear! 1`);
+  });
+
+  useEffect(() => {
+    console.log(`It's ${emotion} around hear! 2`);
+  });
+
+  return (
+    <>
+      <h1>Current emotion is {emotion}</h1>
+      <button onClick={() => setEmotion("happy")}>Happy</button>
+      <button onClick={() => setEmotion("Frustrated")}>Frustrated</button>
+      <button onClick={() => setEmotion("enthusiastic")}>enthusiastic</button>
+      {isSecret ? <SecretComponent /> : <PublicComponent />}
+    </>
+  )
+}
+
+export default App;
+```
+
+Execute something only when a specific state is changed.
+
+```javascript
+import React, { useEffect, useState } from "react";
+import "./style.css";
+
+// used array destructuring
+function App({ isSecret }) {
+  const [emotion, setEmotion] = useState("happy");
+  const [second, setSecondary] = useState("tired");
+
+  useEffect(() => {
+    console.log(`It's ${emotion} around hear! 1`);
+  }, [emotion]);
+
+  useEffect(() => {
+    console.log(`It's ${second} around hear! 2`);
+  }, [second]);
+
+  return (
+    <>
+      <h1>Current emotion is {emotion} and {second}</h1>
+      <button onClick={() => setEmotion("happy")}>Happy</button>
+      <button onClick={() => setSecondary("Grabby")}>Grabby</button>
+      <button onClick={() => setSecondary("tired")}>tired</button>
+      <button onClick={() => setEmotion("Frustrated")}>Frustrated</button>
+      <button onClick={() => setEmotion("enthusiastic")}>enthusiastic</button>
+      {isSecret ? <SecretComponent /> : <PublicComponent />}
+    </>
+  )
+}
+
+export default App;
+```
+The below code state functions takes the current state and returns the new state.
+
+```javascript
+import React, { useEffect, useState } from "react";
+import "./style.css";
+
+// used array destructuring
+function App({ isSecret }) {
+  return (
+    <>
+      <App1 />
+    </>
+  )
+}
+
+function App1() {
+  const [checked, setChecked] = useState(false);
+
+  function toggle(){
+    // not only value, we can pass the function as parameter to get executed
+    setChecked((checked) => {
+      console.log(checked);
+      return !checked;
+    })
+  }
+
+  // return (
+  //   <>
+  //     <input type="checkbox" value={checked} onChange={() => setChecked((checked) => !checked)}/>
+  //     <p>{checked? "checked": "not checked"}</p>
+  //   </>
+  // )
+
+  return (
+    <>
+      <input type="checkbox" value={checked} onChange={toggle}/>
+      <p>{checked? "checked": "not checked"}</p>
+    </>
+  )
+}
+
+export default App;
+
+```
+Instead doing this manually, we can do it using useReducer. userReducer - This is a simple function that takes the current state as the input and returns the new state.
+
+```javascript
+import React, { useEffect, useReducer, useState } from "react";
+import "./style.css";
+
+// used array destructuring
+function App({ isSecret }) {
+  return (
+    <>
+      <App2 />
+    </>
+  )
+}
+
+function App2() {
+  const [checked, toggle] = useReducer(
+    (checked) => !checked,
+    false
+  )
+
+  return (
+    <>
+      <input type="checkbox" value={checked} onChange={toggle}/>
+      <p>{checked? "checked": "not checked"}</p>
+    </>
+  )
+}
+
+export default App;
+```
+
+
