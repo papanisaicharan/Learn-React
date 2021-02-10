@@ -2,7 +2,7 @@
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/learn-react-easy)
 
-**Note:** This code and content are taken from a course.
+**Note:** This codes and content is taken from a course.
 
 This is my React learning project, I will learn and implement the concepts simulatenously.
 
@@ -73,9 +73,9 @@ This above code is the alternate version. It accepts the html and convert it int
 
 Try the above code in the editor of babel to understand more: https://babeljs.io/repl
 
-# ChapterRLv0.1
+## ChapterRLv0.1
 
-## **React component**
+### **React component**
 It is a block of the page, where it can work or restructure itself based on the user interaction.
 
 To understand it more clearly. please visit the App.js in the above link.
