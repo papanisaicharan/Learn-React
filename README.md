@@ -37,7 +37,7 @@ Above piece of code adds the element to the DOM.
 - 1st argument is what we want to create.
 - 2nd argument is where we want to create.
 
-The element with id 'root' is present in the index.html of public folder. This is really simple, as we are rendering the html with the help of react library. Now what if we want to render an unordered list. Then the code becomes as follows:
+The element with id 'root' is present in the index.html of public folder. This is really simple, as we are rendering the html with the help of react library. Now what if we want to render an unordered list. Then the code becomes as follows
 
 ```javascript
 ReactDOM.render(
@@ -49,6 +49,7 @@ ReactDOM.render(
    document.getElementById("root")
 );
 ```
+
 
 Now, As soon we see this, the question that comes to our mind is - are we going to use this createElement functions to create the entire application? If yes, then this is a mess.
 
@@ -179,4 +180,88 @@ Note: Even inline styles should be wrapped in {}. Just Tune your mind stating th
       );
     }
     export default App;
+```
+
+## ChapterRL0.3
+
+Adding an image (Image should be in the same folder to work properly):
+```javascript
+import React from "react";
+import "./style.css";
+import image from './image.png'
+
+function Header(props) {
+  return (
+    <header>
+      <img src={image} height="200" alt="profile-pic"/>
+    </header>
+  );
+}
+
+function App() {
+  return (
+    <div className="App">
+      <Header />
+    </div>
+  );
+}
+
+export default App;
+```
+**Fragments**
+Fragments are nothing but the JSX wrappers,  see the below example to understand it.
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+
+import App from "./App";
+
+function App2(){
+  return (
+    <h2>Second App</h2>
+  )
+}
+ReactDOM.render(
+  <App/>
+  <App2/>,
+   document.getElementById("root")
+);
+```
+The above code will through you an error because you cannot have the two component in first argument of the render function, So use the react Fragments as below
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+
+import App from "./App";
+
+function App2(){
+  return (
+    <h2>Second App</h2>
+  )
+}
+
+ReactDOM.render(
+  <React.Fragment>
+    <App/>
+    <App2/>
+  </React.Fragment>,
+   document.getElementById("root")
+);
+
+// Below two also works the same way
+// ReactDOM.render(
+//   <>
+//     <App/>
+//     <App2/>
+//   </>,
+//    document.getElementById("root")
+// );
+
+// ReactDOM.render(
+//   <div>
+//     <App/>
+//     <App2/>
+//   </div>,
+//    document.getElementById("root")
+// );
 ```
