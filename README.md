@@ -405,7 +405,7 @@ function App({ isSecret }) {
 
 export default App;
 ```
-The below code state functions takes the current state and returns the new state.
+In the below code, state functions takes the current state and returns the new state.
 
 ```javascript
 import React, { useEffect, useState } from "react";
@@ -449,7 +449,7 @@ function App1() {
 export default App;
 
 ```
-Instead doing this manually, we can do it using useReducer. userReducer - This is a simple function that takes the current state as the input and returns the new state.
+Instead of doing this manually, we can do it using useReducer. userReducer - This is a simple function that takes the current state as the input and returns the new state.
 
 ```javascript
 import React, { useEffect, useReducer, useState } from "react";
